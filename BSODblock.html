@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>BSOD Blocked</title>
+  <title>Windows Error</title>
   <style>
-    body {
-      background-color: #0078D7; /* Windows 11 BSOD lighter blue */
-      color: white;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    html, body {
       margin: 0;
       padding: 0;
+      background-color: #0078D7; /* Windows 11 BSOD blue */
+      color: white;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
       text-align: center;
     }
 
@@ -29,46 +29,52 @@
       padding: 0 20px;
     }
 
-    .details {
-      margin-top: 40px;
-      font-family: monospace;
-      font-size: 1em;
+    .qr {
+      width: 120px;
+      height: 120px;
+      margin-top: 50px;
     }
 
     .footer {
-      margin-top: 60px;
-      font-size: 0.9em;
+      font-size: 1em;
+      margin-top: 40px;
       font-family: monospace;
-      white-space: pre-line;
+      white-space: pre-wrap;
+    }
+
+    @media (max-width: 600px) {
+      .face {
+        font-size: 4em;
+      }
+
+      .message {
+        font-size: 1.2em;
+      }
+
+      .qr {
+        width: 100px;
+        height: 100px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="face">:(</div>
   <div class="message">
-    Your PC ran into a problem and blocked this website to protect you.
+    Your device ran into a problem and needs to restart.<br>
+    We're just collecting some error info, and then we'll restart for you.
   </div>
-  <div class="message">
-    If you’d like to know more, you can search online later for this error:
+  <div class="message" style="margin-top: 30px;">
+    For more information about this issue and possible fixes,<br>
+    visit <span style="text-decoration: underline;">https://www.windows.com/stopcode</span>
   </div>
-  <div class="details">
-    STOP CODE: WEBSITE_BLOCKED <br>
-    DOMAIN: <span id="domain">unknown</span>
+  <div class="message" style="margin-top: 30px;">
+    If you call a support person, give them this info:<br>
+    Stop code: SYSTEM_SERVICE_EXCEPTION
   </div>
+  <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?data=https://www.windows.com/stopcode&size=120x120" alt="QR Code to Windows Stopcode page">
   <div class="footer">
-    For more information, visit: aka.ms/stopcode
+    Collecting error info: 100% complete
   </div>
-
-  <script>
-    try {
-      const referrer = document.referrer || new URLSearchParams(location.search).get("url");
-      if (referrer) {
-        const domain = new URL(referrer).hostname;
-        document.getElementById("domain").textContent = domain;
-      }
-    } catch (e) {
-      // Silent fail
-    }
-  </script>
 </body>
 </html>
