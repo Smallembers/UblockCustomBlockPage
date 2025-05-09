@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blocked</title>
+  <style>
+    body {
+      background-color: #0078D7;
+      color: white;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      padding: 40px;
+      font-size: 1.4em;
+    }
+    .face {
+      font-size: 4em;
+      transform: rotate(-90deg);
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .details {
+      margin-top: 40px;
+      font-size: 0.8em;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="face">:(</div>
+    <p>Your system has blocked this site for your protection.</p>
+    <p>We're collecting some info, and then we'll redirect you... maybe.</p>
+    <div class="details" id="error-details">
+      <p>STOP CODE: WEBSITE_BLOCKED</p>
+      <p>Domain: <span id="domain">unknown</span></p>
+    </div>
+  </div>
+
+  <script>
+    // Extract domain from referrer or query string
+    try {
+      const referrer = document.referrer || new URLSearchParams(window.location.search).get("url");
+      if (referrer) {
+        const domain = new URL(referrer).hostname;
+        document.getElementById("domain").textContent = domain;
+      }
+    } catch (e) {
+      // Ignore if domain parsing fails
+    }
+  </script>
+</body>
+</html>
