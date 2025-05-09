@@ -72,20 +72,40 @@
 <body>
   <div class="face">:(</div>
   <div class="message">
-    Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you.
+    Your Chromebook blocked this website through GoGuardian for security reasons. We're collecting error info.
   </div>
-  <div class="progress">85% complete</div>
+  <div class="progress" id="progressText">0% complete</div>
   <div class="small-text">
-    <p>For more information about this issue and possible fixes, visit our website.</p>
-    <p>If you call a support person, give them this info:</p>
-    <div class="code">Stop code: 0x00000000</div>
-    <p>Blocked domain: <span id="domain"></span></p>
+    <p>If you need more information, please contact your system administrator.</p>
+    <p>If you call a support person, provide them with this info:</p>
+    <div class="code">Stop code: 0x0000001A</div>
   </div>
 
   <script>
-    // JavaScript to get the current domain and display it
-    const url = window.location.hostname;  // Extracts the domain from the URL
-    document.getElementById('domain').textContent = url;  // Display the domain on the page
+    const progressText = document.getElementById('progressText');
+    let progress = 0;
+    const totalTime = 120 * 1000; // 120 seconds in milliseconds
+    const interval = Math.random() * 3000 + 1000; // Random stutter time between 1-4 seconds
+    const maxProgress = 100;
+
+    function updateProgress() {
+      if (progress < maxProgress) {
+        progress += Math.random() * 2 + 1; // Increase progress with random increments
+
+        if (progress > maxProgress) {
+          progress = maxProgress; // Prevent exceeding 100%
+        }
+
+        progressText.textContent = `${Math.floor(progress)}% complete`;
+
+        // Add random stutter/pause effect
+        const nextUpdate = Math.random() * interval + 1000; // Random pause between updates
+
+        setTimeout(updateProgress, nextUpdate);
+      }
+    }
+
+    setTimeout(updateProgress, interval);
   </script>
 </body>
 </html>
