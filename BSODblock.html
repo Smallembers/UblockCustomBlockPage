@@ -2,58 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Windows Error</title>
+  <title>BSOD</title>
   <style>
-    html, body {
+    body {
       margin: 0;
-      padding: 0;
-      background-color: #0078D7; /* Windows 11 BSOD blue */
+      background-color: #0078D7;
       color: white;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-      text-align: center;
+      height: 100vh;
+      padding-left: 100px;
     }
 
     .face {
-      font-size: 6em;
-      margin-bottom: 40px;
+      font-size: 10rem;
+      margin-bottom: 20px;
     }
 
     .message {
-      font-size: 1.6em;
-      max-width: 700px;
-      padding: 0 20px;
+      font-size: 2rem;
+      max-width: 800px;
     }
 
-    .qr {
-      width: 120px;
-      height: 120px;
-      margin-top: 50px;
+    .progress {
+      font-size: 1.5rem;
+      margin: 30px 0 50px 0;
     }
 
-    .footer {
-      font-size: 1em;
-      margin-top: 40px;
+    .small-text {
+      font-size: 0.9rem;
+      max-width: 600px;
+      color: #cce6ff;
+    }
+
+    .small-text p {
+      margin: 10px 0;
+    }
+
+    .code {
+      margin-top: 20px;
       font-family: monospace;
-      white-space: pre-wrap;
     }
 
-    @media (max-width: 600px) {
+    @media screen and (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+
       .face {
-        font-size: 4em;
+        font-size: 6rem;
       }
 
       .message {
-        font-size: 1.2em;
+        font-size: 1.5rem;
       }
 
-      .qr {
-        width: 100px;
-        height: 100px;
+      .progress {
+        font-size: 1.2rem;
+      }
+
+      .small-text {
+        font-size: 0.8rem;
       }
     }
   </style>
@@ -61,20 +72,20 @@
 <body>
   <div class="face">:(</div>
   <div class="message">
-    Your device ran into a problem and needs to restart.<br>
-    We're just collecting some error info, and then we'll restart for you.
+    Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you.
   </div>
-  <div class="message" style="margin-top: 30px;">
-    For more information about this issue and possible fixes,<br>
-    visit <span style="text-decoration: underline;">https://www.windows.com/stopcode</span>
+  <div class="progress">85% complete</div>
+  <div class="small-text">
+    <p>For more information about this issue and possible fixes, visit our website.</p>
+    <p>If you call a support person, give them this info:</p>
+    <div class="code">Stop code: 0x00000000</div>
+    <p>Blocked domain: <span id="domain"></span></p>
   </div>
-  <div class="message" style="margin-top: 30px;">
-    If you call a support person, give them this info:<br>
-    Stop code: SYSTEM_SERVICE_EXCEPTION
-  </div>
-  <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?data=https://www.windows.com/stopcode&size=120x120" alt="QR Code to Windows Stopcode page">
-  <div class="footer">
-    Collecting error info: 100% complete
-  </div>
+
+  <script>
+    // JavaScript to get the current domain and display it
+    const url = window.location.hostname;  // Extracts the domain from the URL
+    document.getElementById('domain').textContent = url;  // Display the domain on the page
+  </script>
 </body>
 </html>
