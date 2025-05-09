@@ -13,7 +13,10 @@
     }
     .face {
       font-size: 6em;
-      line-height: 1;
+      transform: rotate(90deg);
+      transform-origin: left top;
+      display: inline-block;
+      margin-bottom: 40px;
     }
     .container {
       max-width: 800px;
@@ -39,7 +42,6 @@
   </div>
 
   <script>
-    // Extract domain from referrer or query string
     try {
       const ref = document.referrer || new URLSearchParams(location.search).get("url");
       if (ref) {
@@ -47,7 +49,7 @@
         document.getElementById("domain").textContent = domain;
       }
     } catch (e) {
-      // Fail silently
+      // Silent fail
     }
   </script>
 </body>
