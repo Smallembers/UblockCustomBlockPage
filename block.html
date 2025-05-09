@@ -8,45 +8,46 @@
       background-color: #0078D7;
       color: white;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      padding: 40px;
-      font-size: 1.4em;
+      padding: 60px;
+      font-size: 1.5em;
     }
     .face {
-      font-size: 4em;
-      transform: rotate(-90deg);
+      font-size: 6em;
+      line-height: 1;
     }
     .container {
       max-width: 800px;
       margin: 0 auto;
     }
     .details {
-      margin-top: 40px;
-      font-size: 0.8em;
+      margin-top: 60px;
+      font-size: 0.9em;
       font-family: monospace;
+      white-space: pre-line;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="face">:(</div>
-    <p>Your system has blocked this site for your protection.</p>
-    <p>We're collecting some info, and then we'll redirect you... maybe.</p>
+    <p>Your PC ran into a problem and blocked this website to protect you.</p>
+    <p>If you’d like to know more, you can search online later for this error:</p>
     <div class="details" id="error-details">
-      <p>STOP CODE: WEBSITE_BLOCKED</p>
-      <p>Domain: <span id="domain">unknown</span></p>
+      STOP CODE: WEBSITE_BLOCKED  
+      DOMAIN: <span id="domain">unknown</span>
     </div>
   </div>
 
   <script>
     // Extract domain from referrer or query string
     try {
-      const referrer = document.referrer || new URLSearchParams(window.location.search).get("url");
-      if (referrer) {
-        const domain = new URL(referrer).hostname;
+      const ref = document.referrer || new URLSearchParams(location.search).get("url");
+      if (ref) {
+        const domain = new URL(ref).hostname;
         document.getElementById("domain").textContent = domain;
       }
     } catch (e) {
-      // Ignore if domain parsing fails
+      // Fail silently
     }
   </script>
 </body>
