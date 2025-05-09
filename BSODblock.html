@@ -9,16 +9,14 @@
       background-color: #0000A0;  /* BSOD blue */
       color: white;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      font-size: 1.4em;
-      padding: 50px;
+      padding: 60px;
+      font-size: 1.5em;
       margin: 0;
     }
 
-    /* Sideways :( face */
+    /* Standing :( face */
     .face {
-      font-size: 10em;
-      transform: rotate(90deg);  /* Rotate to the classic BSOD sideways orientation */
-      transform-origin: top left;
+      font-size: 10em;  /* Large size for the face */
       margin-top: 80px;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1;
@@ -26,6 +24,8 @@
 
     /* Centering content */
     .container {
+      max-width: 800px;
+      margin: 0 auto;
       text-align: center;
     }
 
@@ -50,18 +50,22 @@
       margin-top: 60px;
       font-size: 0.9em;
       font-family: monospace;
+      white-space: pre-line;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Classic BSOD sideways :( -->
+    <!-- Standing :( for BSOD effect -->
     <div class="face">:(</div>
-    <p>Your PC has encountered a problem and blocked this website to protect you.</p>
+    <p>Your PC ran into a problem and blocked this website to protect you.</p>
+    <p>If you’d like to know more, you can search online later for this error:</p>
+    <div class="details" id="error-details">
+      STOP CODE: WEBSITE_BLOCKED  
+    </div>
     
     <!-- Error details -->
     <div class="details">
-      STOP CODE: WEBSITE_BLOCKED <br>
       DOMAIN: <span id="domain">unknown</span>
     </div>
 
@@ -83,7 +87,7 @@
         document.getElementById("domain").textContent = domain;
       }
     } catch (e) {
-      // If domain fetching fails, keep "unknown"
+      // Silent fail if domain fetching fails, keeps "unknown"
     }
   </script>
 </body>
