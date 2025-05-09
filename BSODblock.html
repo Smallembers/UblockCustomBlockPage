@@ -2,50 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Blocked</title>
+  <title>BSOD Blocked</title>
   <style>
-    /* Basic BSOD Styling */
     body {
-      background-color: #0000A0;  /* BSOD blue */
+      background-color: #0078D7; /* Windows 11 BSOD lighter blue */
       color: white;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      padding: 60px;
-      font-size: 1.5em;
       margin: 0;
-    }
-
-    /* Standing :( face */
-    .face {
-      font-size: 10em;  /* Large size for the face */
-      margin-top: 80px;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1;
-    }
-
-    /* Centering content */
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
       text-align: center;
     }
 
-    /* Error details and additional info */
+    .face {
+      font-size: 6em;
+      margin-bottom: 40px;
+    }
+
+    .message {
+      font-size: 1.6em;
+      max-width: 700px;
+      padding: 0 20px;
+    }
+
     .details {
-      font-family: monospace;
       margin-top: 40px;
-      font-size: 1.2em;
+      font-family: monospace;
+      font-size: 1em;
     }
 
-    /* Small separator line */
-    .separator {
-      margin-top: 20px;
-      border-top: 2px solid white;
-      width: 60%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Footer styling (classic BSOD footer) */
     .footer {
       margin-top: 60px;
       font-size: 0.9em;
@@ -55,31 +44,22 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Standing :( for BSOD effect -->
-    <div class="face">:(</div>
-    <p>Your PC ran into a problem and blocked this website to protect you.</p>
-    <p>If you’d like to know more, you can search online later for this error:</p>
-    <div class="details" id="error-details">
-      STOP CODE: WEBSITE_BLOCKED  
-    </div>
-    
-    <!-- Error details -->
-    <div class="details">
-      DOMAIN: <span id="domain">unknown</span>
-    </div>
-
-    <!-- Optional separator line -->
-    <div class="separator"></div>
-
-    <!-- Footer info -->
-    <div class="footer">
-      If you'd like to know more, you can search online later for this error.
-    </div>
+  <div class="face">:(</div>
+  <div class="message">
+    Your PC ran into a problem and blocked this website to protect you.
+  </div>
+  <div class="message">
+    If you’d like to know more, you can search online later for this error:
+  </div>
+  <div class="details">
+    STOP CODE: WEBSITE_BLOCKED <br>
+    DOMAIN: <span id="domain">unknown</span>
+  </div>
+  <div class="footer">
+    For more information, visit: aka.ms/stopcode
   </div>
 
   <script>
-    // Dynamically fetch the domain name from the referrer URL
     try {
       const referrer = document.referrer || new URLSearchParams(location.search).get("url");
       if (referrer) {
@@ -87,7 +67,7 @@
         document.getElementById("domain").textContent = domain;
       }
     } catch (e) {
-      // Silent fail if domain fetching fails, keeps "unknown"
+      // Silent fail
     }
   </script>
 </body>
