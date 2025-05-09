@@ -2,70 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Blocked - Matrix</title>
+  <title>Access Restricted</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      margin: 0;
-      background-color: black;
-      color: #00ff00;
-      font-family: monospace;
-      overflow: hidden;
-    }
-
-    .matrix {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      white-space: nowrap;
-      font-size: 16px;
-      line-height: 16px;
-      z-index: 1;
-      opacity: 0.4;
-    }
-
-    .message {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 2;
-      font-size: 2rem;
-      color: #00ff00;
+      background: #f2f2f2;
+      color: #333;
+      font-family: sans-serif;
       text-align: center;
-      background: rgba(0, 0, 0, 0.75);
-      padding: 20px;
-      border: 1px solid #00ff00;
-      border-radius: 10px;
+      padding: 100px 20px;
+    }
+
+    .lock {
+      font-size: 80px;
+      color: #555;
+    }
+
+    .title {
+      font-size: 2rem;
+      margin-top: 20px;
+    }
+
+    .desc {
+      font-size: 1rem;
+      margin-top: 10px;
+      color: #666;
+    }
+
+    .admin {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #999;
     }
   </style>
 </head>
 <body>
-  <div class="matrix" id="matrix"></div>
-  <div class="message">
-    ACCESS DENIED<br>
-    This website has been blocked by system policy.
+  <div class="lock">🔒</div>
+  <div class="title">This website is locked</div>
+  <div class="desc">
+    Your device is managed by your school.<br>
+    Access to this website has been restricted according to your administrator’s policies.
   </div>
-
-  <script>
-    const matrix = document.getElementById('matrix');
-    const cols = Math.floor(window.innerWidth / 16);
-    const drops = Array(cols).fill(1);
-
-    function draw() {
-      let content = '';
-      for (let y = 0; y < 50; y++) {
-        for (let i = 0; i < cols; i++) {
-          content += Math.random() > 0.975 ? (Math.random() > 0.5 ? '1' : '0') : ' ';
-        }
-        content += '\n';
-      }
-      matrix.textContent = content;
-    }
-
-    setInterval(draw, 75);
-  </script>
+  <div class="admin">
+    Contact your system administrator for more information.
+  </div>
 </body>
 </html>
